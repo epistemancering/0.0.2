@@ -5,6 +5,7 @@ reactDOM.createRoot(document.querySelector("div")).render(<react.StrictMode>
   <App />
 </react.StrictMode>)
 function App() {
+  let state = react.useState()
   let expression = react.useRef()
   let style = react.useRef()
   let img = react.useRef()
@@ -17,15 +18,15 @@ function App() {
       event.preventDefault()
       if (expression.current.value === "funny") {
         if (style.current.value === "abstract") {
-          img.current.src = "images/funnyAbstract"
+          state[1]("images/funnyAbstract.png")
         } else {
-          img.current.src = "images/funnyPhotorealistic"
+          state[1]("images/funnyPhotorealistic.png")
         }
       } else {
         if (style.current.value === "abstract") {
-          img.current.src = "images/sadAbstract"
+          state[1]("images/sadAbstract.png")
         } else {
-          img.current.src = "images/sadPhotorealistic"
+          state[1]("images/sadPhotorealistic.png")
         }
       }
       // img.current.src = await axios.post("https://website.com/path", { Descriptor: Descriptor.current.value, clothing: clothing.current.value, item: item.current.value, descriptor: descriptor.current.value })
@@ -54,6 +55,6 @@ function App() {
         diffuse
       </button>
     </form>
-    <img ref = {img} />
+    <img src = {state[0]} />
   </>
 }
